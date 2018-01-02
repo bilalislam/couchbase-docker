@@ -2,7 +2,7 @@
 
 ## Start Minikube
 
-eval $(minikube completion bash) && minikube start --docker-opt="default-ulimit=nofile=500000:500000" && minikube dashboard --url
+eval $(minikube completion bash) && minikube start --docker-opt="default-ulimit=nofile=500000:500000" && echo "Kubernetes dashboard: $(minikube dashboard --url)"
 
 
 ## Create Master RC
@@ -13,7 +13,7 @@ kubectl create -f master-service.yml
 You can now access the Couchbase Web Console using
 (if you are not shown a user/password prompt then please wait until completed initializing)
 ```
-minikube service --url couchbase-service
+minikube service --url couchbase-webconsole-service
 ```
 
 ## Create Worker RC
@@ -23,5 +23,5 @@ sed -e "s/SERVICE_IP_OF_MASTER/$(kubectl get po -l app=couchbase-master-pod -o w
 
 ## Scale cluster
 ```
-kubectl scale --replicas=3 rc/couchbase-worker-controller
+kubectl scale --replicas=2 rc/couchbase-worker-controller
 ```
