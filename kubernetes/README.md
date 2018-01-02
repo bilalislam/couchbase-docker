@@ -2,7 +2,7 @@
 
 ## Start Minikube
 
-eval $(minikube completion bash) && minikube start --docker-opt="default-ulimit=nofile=500000:500000" && echo "Kubernetes dashboard: $(minikube dashboard --url)"
+eval $(minikube completion bash) && minikube start --vm-driver=hyperkit --memory=8192 --docker-opt="default-ulimit=nofile=500000:500000" && sleep 10 && echo "Kubernetes dashboard: $(minikube dashboard --url)"
 
 
 ## Create Master RC

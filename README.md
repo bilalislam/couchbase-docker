@@ -18,6 +18,13 @@ curl -v -u 'Administrator:password' "$(minikube service --url couchbase-webconso
     -d '["travel-sample"]'
 ```
 
+# Optional: High availability with replicas
+
+```
+curl -v -u 'Administrator:password' "$(minikube service --url couchbase-webconsole-service)/pools/default/buckets/travel-sample " \
+    -d replicaNumber=2 
+```
+
 # Example: Create Memory-Optimized Global Index
 ```
 curl -v -u 'Administrator:password' "$(minikube service --url couchbase-query-service)/query/service" \
